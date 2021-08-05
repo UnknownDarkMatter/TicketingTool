@@ -8,15 +8,17 @@ namespace TicketingTool.Business
 {
     public class TicketService
     {
-        private string _filePath;
+        public string _filePath;
 
-        public TicketService()
+        public TicketService(string filePath)
         {
-            _filePath = " ";
+            _filePath = filePath;
+            
+
         }
         public void AddNewTicket(Ticket ticket)
         {
-            
+            Console.WriteLine(_filePath);
         }
 
         public List<Ticket> GetTicket()

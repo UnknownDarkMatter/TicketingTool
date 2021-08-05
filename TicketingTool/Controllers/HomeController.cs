@@ -14,10 +14,12 @@ namespace TicketingTool.Controllers
     {
 
         private TicketService _ticketService;
+       
 
-        public HomeController()
+        public HomeController(TicketService ticketService)
         {
-            _ticketService = new TicketService();
+            _ticketService = ticketService;
+            
         }
         public IActionResult Index()
         {
