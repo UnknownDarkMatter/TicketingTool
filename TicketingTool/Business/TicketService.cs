@@ -25,6 +25,7 @@ namespace TicketingTool.Business
             CreateFileIfNotExists();
             var fileContent = File.ReadAllText(_filePath);
             fileContent += TicketToCsv(ticket);
+            File.WriteAllText(_filePath, fileContent);
         }
 
         public List<Ticket> GetTicket()
@@ -36,7 +37,10 @@ namespace TicketingTool.Business
         public void Update(Ticket ticket)
         {
             CreateFileIfNotExists();
-
+            var lines = File.ReadAllLines(_filePath)
+                .Where(m => !m.StartsWith($"{ticket.Id}{CsvSeparator}"))
+                .ToList();
+            lines.Add(TicketToCsv(ticket));
         }
 
         public void Remove(Ticket ticket)
