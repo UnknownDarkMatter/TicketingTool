@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TicketingTool.Business;
 
 namespace TicketingTool
 {
@@ -23,6 +24,10 @@ namespace TicketingTool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            string ticketsFlePath = Configuration.GetValue<string>("TicketsFilePath");
+            ticketsFlePath = ticketsFlePath.Replace("~", Environment.CurrentDirectory);
+            services.AddScoped<TicketService>( m => { return new TicketService(ticketsFlePath); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
