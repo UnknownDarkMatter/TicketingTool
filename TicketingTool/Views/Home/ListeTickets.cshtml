@@ -1,10 +1,27 @@
-﻿@{
+﻿@model List<TicketingTool.Models.Ticket>
+@{
     ViewBag.Title = "Ticketing tool";
     ViewBag.ActivePage = "liste-tickets";
 }
 
 <h1>Tickets list</h1>
-
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Title of the ticket</td>
+        <td>Content of the ticket</td>
+        <td>Creation date</td>
+    </tr>
+    @foreach (var ticket in Model)
+    {
+        <tr>
+            <td><input type="text" readonly="readonly" value="@(ticket.Id)" /></td>
+            <td><input type="text" readonly="readonly" value="@(ticket.Title)" /></td>
+            <td><textarea readonly="readonly" >@(ticket.Content)</textarea></td>
+            <td><input type="text" readonly="readonly" value="@(ticket.CreationDate.ToString("dddd dd MMMM yyyy"))" /></td>
+        </tr>
+    }
+</table>
 
 
 

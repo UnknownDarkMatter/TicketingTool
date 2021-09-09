@@ -26,7 +26,8 @@ namespace TicketingTool.Controllers
         
         public IActionResult ListeTickets()
         {
-            return View();
+            var tickets = _ticketService.GetTickets();
+            return View(tickets);
         }
 
         public IActionResult CreateTicket()
